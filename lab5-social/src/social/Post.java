@@ -31,7 +31,7 @@ public Post(Person author, String content){
     this.author = author;
     this.content = content;
 }
-
+//fix
 public Long getId(){
     return postId;
 }
