@@ -242,7 +242,7 @@ public Collection<String> listOfGroups() {
     Post newPost = new Post(author, text);
     postRepository.save(newPost);
 
-    return newPost.getId();
+    return newPost.getId().toString();
 }
 
 
@@ -279,7 +279,7 @@ public Collection<String> listOfGroups() {
    */
   public List<String> getPaginatedUserPosts(String author, int pageNo, int pageLength) {
     Person p = personRepository.findById(author).orElse(null);
-    List<String>posts = p.getPosts().stream().sorted(Comparator.comparingLong(Post::getTime).reversed()).map(Post::getId).toList();
+    List<String>posts = p.getPosts().stream().sorted(Comparator.comparingLong(Post::getTime).reversed()).map(a->a.getId().toString()).toList();
     int start = pageLength*(pageNo-1);
     List<String>result = new ArrayList<>();
     for(int i=start; i<posts.size(); i++) result.add(posts.get(i));

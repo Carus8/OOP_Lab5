@@ -28,7 +28,7 @@ class Person {
 
   private Set<Person> friends = new HashSet<>();
 
-@OneToMany(mappedBy = "author")
+@OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
 private List<Post> posts = new ArrayList<>();
 
   Person() {

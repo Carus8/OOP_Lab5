@@ -1,6 +1,7 @@
 package social;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,12 +13,12 @@ public class Post {
 
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Id
-private String postId;
+private Long postId;
 private String content;
 private Long timestamp = System.currentTimeMillis();
 
 
-@ManyToOne
+@ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "authorCode")
 private Person author;
 
@@ -31,7 +32,7 @@ public Post(Person author, String content){
     this.content = content;
 }
 
-public String getId(){
+public Long getId(){
     return postId;
 }
 
